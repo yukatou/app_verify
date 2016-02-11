@@ -108,7 +108,6 @@ try {
 }
 
 $response = array(
-  'code' => $code,
   'order_id' => $json->orderId,
   'product_id' => $json->productId,
 );

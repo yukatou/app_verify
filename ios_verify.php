@@ -26,6 +26,7 @@ if ($response->status == 21007) {
 // 検証失敗
 if ($response->status != 0) {
   error_handle(1000, 'レシート検証に失敗しました' $receipt, $response);
+  exit;
 }
 
 /**
@@ -114,8 +115,14 @@ foreach ($response->receipt->in_app as $key => $value) {
   }
 }
 
+
+if (count($trancastions['transactions']) === 0) {
+  error_handle(1005, 'システムで問題がおきました', $receipt, $response);
+  exit;
+}
+
 header('Content-Type: application/json');
-echo json_encode($response);
+echo json_encode($transactions);
 
 
 
